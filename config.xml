@@ -3,13 +3,13 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.example.mastercook"
+        id        = "com.example.teamanage"
         version   = "1.0.0">
 
-    <name>MasterCook</name>
+    <name>TeaManage</name>
 
     <description>
-        Mobile Web Programming Assignment.
+        FYP Application.
     </description>
 
     <author>
@@ -24,7 +24,7 @@
     <preference name="permissions"                value="none"/>
 
     <!-- Customize your app and platform with the preference element. -->
-    <preference name="phonegap-version"           value="3.6.3" />          <!-- all: current version of PhoneGap -->
+    <preference name="phonegap-version"           value="3.5.0" />          <!-- all: current version of PhoneGap -->
     <preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
     <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
     <preference name="fullscreen"                 value="false" />          <!-- all: hides the status bar at the top of the screen -->
@@ -45,22 +45,22 @@
 
     <!-- Core plugins -->
     <!--<gap:plugin name="org.apache.cordova.battery-status" />-->
-    <gap:plugin name="org.apache.cordova.camera" version="0.2.3" />
-    <gap:plugin name="org.apache.cordova.media-capture" />
+    <!--<gap:plugin name="org.apache.cordova.camera" />-->
+    <!--<gap:plugin name="org.apache.cordova.media-capture" />-->
     <!--<gap:plugin name="org.apache.cordova.console" />-->
     <!--<gap:plugin name="org.apache.cordova.contacts" />-->
-    <gap:plugin name="org.apache.cordova.device" />
-    <gap:plugin name="org.apache.cordova.device-motion" />
-    <gap:plugin name="org.apache.cordova.device-orientation" />
+    <!--<gap:plugin name="org.apache.cordova.device" />-->
+    <!--<gap:plugin name="org.apache.cordova.device-motion" />-->
+    <!--<gap:plugin name="org.apache.cordova.device-orientation" />-->
     <!--<gap:plugin name="org.apache.cordova.dialogs" />-->
     <!--<gap:plugin name="org.apache.cordova.file" />-->
     <!--<gap:plugin name="org.apache.cordova.file-transfer" />-->
-    <gap:plugin name="org.apache.cordova.geolocation" />
+    <!--<gap:plugin name="org.apache.cordova.geolocation" />-->
     <!--<gap:plugin name="org.apache.cordova.globalization" />-->
     <!--<gap:plugin name="org.apache.cordova.inappbrowser" />-->
-    <gap:plugin name="org.apache.cordova.media" />
+    <!--<gap:plugin name="org.apache.cordova.media" />-->
     <!--<gap:plugin name="org.apache.cordova.network-information" />-->
-    <gap:plugin name="org.apache.cordova.splashscreen" version="0.3.4" />
+    <!--<gap:plugin name="org.apache.cordova.splashscreen" />-->
     <!--<gap:plugin name="org.apache.cordova.vibration" />-->
 
     <!-- Third party plugins -->
