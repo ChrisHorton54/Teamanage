@@ -1,0 +1,58 @@
+@font-face {
+    font-family: 'RobotoLight';
+    src: url('../fonts/roboto-light-webfont.ttf');
+}
+
+body{
+    font-family: 'RobotoLight';
+    margin: 0;
+    background: url(../img/index/grass-bg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.clear{
+    clear: both;
+}
+
+.select-login{
+    position: relative;
+}
+
+.select-login .logo img{
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    top: 50px;
+    width: 50%;
+}
+
+.select-type{
+    position: fixed;
+    bottom: 0;
+    width:100%;
+}
+
+.select-type .type-management, .select-type .type-player, .select-type .type-fan{
+    padding: 5px 0px;
+}
+
+.select-type .type-management a, .select-type .type-player a, .select-type .type-fan a{
+    text-decoration: none;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.select-type .type-management{
+    background: rgba(146, 182, 255, 0.8);
+}
+
+.select-type .type-player{
+    background: rgba(146, 182, 255, 0.6);
+}
+
+.select-type .type-fan{
+    background: rgba(146, 182, 255, 0.4);
+}
