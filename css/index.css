@@ -44,10 +44,11 @@ body{
     padding: 5px 0px;
 }
 
-.select-type .type-management a, .select-type .type-player a, .select-type .type-fan a{
+.select-type .type-management h2, .select-type .type-player h2, .select-type .type-fan h2{
     text-decoration: none;
     color: #FFFFFF;
     text-align: center;
+    cursor:pointer;
 }
 
 .select-type .type-management{
@@ -60,4 +61,37 @@ body{
 
 .select-type .type-fan{
     background: rgba(146, 182, 255, 0.4);
+}
+
+.management-login, .player-login, .fan-login{
+    display:none;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity .5s ease-in-out;
+   -moz-transition: opacity .5s ease-in-out;
+   -webkit-transition: opacity .5s ease-in-out;
+}
+
+.login-active{
+    opacity:1;
+}
+
+.login-mask{
+    display: none;
+    background: #000000;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity .5s ease-in-out;
+   -moz-transition: opacity .5s ease-in-out;
+   -webkit-transition: opacity .5s ease-in-out;
+}
+
+.mask-active{
+     opacity: 0.7;
 }
