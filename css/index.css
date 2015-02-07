@@ -95,9 +95,30 @@ textarea:focus, input:focus{
 
 .management-login .management-form, .player-login .player-form, .fan-login .fan-form{
     padding: 0px 20px;
+    transition: opacity .5s ease-in-out;
+   -moz-transition: opacity .5s ease-in-out;
+   -webkit-transition: opacity .5s ease-in-out;
+    opacity: 1;
 }
 
-.management-login .management-form input, .player-login .player-form input, .fan-login .fan-form input{
+.management-login .management-sign-up-form, .fan-login .fan-sign-up-form{
+    display:none;
+    padding: 0px 20px;
+    transition: opacity .5s ease-in-out;
+   -moz-transition: opacity .5s ease-in-out;
+   -webkit-transition: opacity .5s ease-in-out;
+    opacity: 0;
+}
+
+.management-login .management-form.log-in-deactive, .player-login .player-form.log-in-deactive, .fan-login .fan-form.log-in-deactive{
+    opacity: 0;
+}
+
+.management-login .management-sign-up-form.sign-up-active, .fan-login .fan-sign-up-form.sign-up-active{
+    opacity: 1;
+}
+
+.management-login .management-form input, .player-login .player-form input, .fan-login .fan-form input, .management-login .management-sign-up-form input, .fan-login .fan-sign-up-form input{
     background: white;
     background: rgba(146, 182, 255, 0.4);
     width: 95%;
@@ -109,7 +130,7 @@ textarea:focus, input:focus{
     color: #FFFFFF;
 }
 
-.management-login .management-form .submit, .player-login .player-form .submit, .fan-login .fan-form .submit{
+.management-login .management-form .submit, .player-login .player-form .submit, .fan-login .fan-form .submit, .management-login .management-sign-up-form .submit, .fan-login .fan-sign-up-form .submit{
     width: 80%;
     margin: 0 auto;
     display:block;
@@ -121,7 +142,7 @@ textarea:focus, input:focus{
     text-decoration: none;
 }
 
-.management-login .management-form .submit p, .player-login .player-form .submit p, .fan-login .fan-form .submit p{
+.management-login .management-form .submit p, .player-login .player-form .submit p, .fan-login .fan-form .submit p, .management-login .management-sign-up-form .submit p, .fan-login .fan-sign-up-form .submit p{
     margin: 0;
     position: relative;
     top: 13px;
