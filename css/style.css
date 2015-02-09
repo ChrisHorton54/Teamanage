@@ -1,4 +1,11 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,300);
+@font-face {
+    font-family: 'RobotoLight';
+    src: url('../fonts/roboto-light-webfont.ttf');
+}
+
+textarea:focus, input:focus{
+    outline: 0;
+}
 
 body{
     margin: 0;
@@ -8,6 +15,7 @@ body{
 p,a,h1,h2,h3{
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
+    color: #2a415c;
 }
 
 .clear{
@@ -29,6 +37,13 @@ header .menu{
     z-index: 1;
     cursor: pointer;
 }
+header .add-player{
+    right: 8px;
+    top: 8px;
+    position: absolute;
+    z-index: 1;
+    cursor: pointer;
+}
 
 header h2{
     margin: 0;
@@ -40,11 +55,21 @@ header h2{
     color: #FFFFFF;
 }
 
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+}
+
 #popup-nav{
     position: absolute;
     width: 100%;
     background: #FFFFFF;
     top: 50px;
+    z-index:10;
 }
 
 #popup-nav{
@@ -78,4 +103,129 @@ header h2{
     color: #acc7ff;
     position: relative;
     top: 5px;
+}
+
+.section{
+    background: rgba(226, 242, 255, 0.5);
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.section h2{
+    margin: 0;
+    float: left;
+    left: 15px;
+    position: relative;
+    top: 5px;
+}
+
+.section .section-body{
+    background: #e2f2ff;
+    position: relative;
+    left: -3%;
+    width: 106%;
+    margin-top: 10px;
+    padding: 10px 0px;
+}
+
+.section .section-body .section-content{
+    padding: 0px 10px;
+}
+
+.section .section-body .section-content p{
+    margin: 0;
+}
+
+.section .section-body .section-content ul{
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+}
+
+.section .section-body .section-content ul li{
+    list-style: none;
+}
+
+.section .section-body .section-content ul li img{
+    float:right;
+}
+
+.section .section-body .section-content ul li #player_amount{
+    float: left;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.section .section-body .section-content #player-image{
+    float: left;
+    width: 30%;
+}
+
+.section .section-body .section-content #player-name-section{
+    float: right;
+    width: 60%;
+}
+.section .section-body .section-content #player-name-section input{
+    width: 94%;
+}
+
+.section .section-body .section-content #player-name-section input,
+.section .section-body .section-content #player-email-section input{
+    height: 20px;
+    border: 5px solid #FFFFFF;
+}
+
+.section .section-body .section-content #player-description-section textarea{
+    border: 5px solid #FFFFFF;
+    width: 96%;
+}
+
+.section .section-body .section-content #player-name-section p, .section .section-body .section-content #player-email-section p, .section .section-body .section-content #player-description-section p, .section .section-body .section-content #player-position-section p{
+    margin-bottom: 10px;
+}
+
+.section .section-body .section-content #player-email-section, .section .section-body .section-content #player-description-section,
+.section .section-body .section-content #player-position-section{
+    width: 100%;
+    margin-top: 15px;
+}
+
+.section .section-body .section-content #player-email-section input{
+    width: 97%;
+}
+
+.section .section-body .section-content #player-description-section textarea{
+    height: 100px;
+}
+
+.section .section-body .section-content #player-position-section select{
+    width: 100%;
+    height: 50px;
+    padding: 0 10px;
+    border: 1px solid rgba(20, 39, 12, 0.25);
+    font-family: 'RobotoLight';
+    font-size: 16px;
+}
+
+.section .section-body .section-content .submit{
+    width: 100%;
+    margin: 0 auto;
+    display:block;
+    background: #2a415c;
+    font-family: 'RobotoLight';
+    font-size: 16px;
+    color: #FFFFFF;
+    height: 50px;
+    text-decoration: none;
+}
+
+.section .section-body .section-content .submit p{
+    margin: 0;
+    position: relative;
+    top: 13px;
+    text-align: center;
+    color: #FFFFFF;
 }
