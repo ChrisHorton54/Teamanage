@@ -130,6 +130,34 @@ textarea:focus, input:focus{
     color: #FFFFFF;
 }
 
+.fan-login .fan-sign-up-form select{
+    background: white;
+    background: rgba(146, 182, 255, 0.4);
+    width: 100%;
+    height: 50px;
+    padding: 0 10px;
+    border: 1px solid rgba(20, 39, 12, 0.25);
+    font-family: 'RobotoLight';
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.fan-login .fan-sign-up-form select option{
+    background: white;
+    background: rgba(71, 95, 107, 1);
+}
+
+.management-login .management-form input[type="checkbox"], .player-login .player-form input[type="checkbox"], .fan-login .fan-form input[type="checkbox"]{
+    width:5%;
+    float: left;
+}
+
+.management-login .management-form p, .player-login .player-form p, .fan-login .fan-form p{
+    color: #FFFFFF;
+}
+
+
+
 .management-login .management-form .submit, .player-login .player-form .submit, .fan-login .fan-form .submit, .management-login .management-sign-up-form .submit, .fan-login .fan-sign-up-form .submit{
     width: 80%;
     margin: 0 auto;

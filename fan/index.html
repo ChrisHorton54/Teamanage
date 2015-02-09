@@ -15,7 +15,7 @@
         }
         
         window.onload = function(){
-            $('#club_name').html(localStorage.getItem('club_name'));
+            $('#fan_name').html(localStorage.getItem('fan_name'));
             $(".menu").click(function(){
                 $("#popup-nav").fadeToggle("slow");
             });
@@ -25,11 +25,11 @@
   <body>
       <header>
         <img class="menu" src="../img/menu.png" alt="Menu" title="Menu" />
-        <h2 id="club_name"></h2>
+        <h2 id="fan_name"></h2>
         <div id="popup-nav">
             <div id="popup-nav-content">
                 <img src="../img/arrow-head.png" class="arrow-head" title="Arrow Head" alt="Arrow Head" />
-                <a href="squad.html"><div class="nav-block first">
+                <a href=""><div class="nav-block first">
                         <img src="../img/squad-nav.jpg" title="Squad" alt="Squad" />
                         <h3>Squad</h3>
                     </div></a> 

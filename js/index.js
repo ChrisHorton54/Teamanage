@@ -2,6 +2,8 @@ $(document).ready(function(){
     
     startUpLogin();
     
+    retrieveClubs();
+    
     $(".type-management h2").click(function(){
         $(".login-mask").css("display","block");
         $(".management-login").css("display","block");
@@ -134,7 +136,46 @@ $(document).ready(function(){
             }
         }); 
     });
+
+    $(".fan-submit").click(function(){
+        var email_address = $(".fan-form #email_address").val();
+        var password = $(".fan-form #password").val(); 
+        
+        $.ajax({
+            url:"http://teamanage.co.uk/scripts/login.php",
+            type: "POST",
+            data: { email_address: email_address, password: password, type: "fan" },
+            success:function(data){
+                loginFan(data);
+            }
+        });
+    });
     
+    $(".fan-signing").click(function(){
+        var email_address = $(".fan-sign-up-form #email_address").val();
+        var password = $(".fan-sign-up-form #password").val();
+        var confirm_password = $(".fan-sign-up-form #confirm_password").val();
+        var fan_name = $(".fan-sign-up-form #fan_name").val();
+        var club_chosen = $("#clubs option:selected").val();
+        
+        if(emailChecker(email_address)){
+            if(password == confirm_password){
+                $.ajax({
+                    url:"http://teamanage.co.uk/scripts/signup-fan.php",
+                    type: "POST",
+                    data: { email_address: email_address, password: password, fan_name: fan_name, club_chosen: club_chosen },
+                    success:function(data){
+                        signUpFan(data);
+                    }
+                });
+            } else {
+                alert("Please make sure your passwords match");
+            }
+        } else {
+            alert("Please provide a valid Email Address!");
+        }
+        
+    });
     
     
 });
@@ -145,25 +186,69 @@ function startUpLogin(){
             window.location = "management/index.html";
         } else if(localStorage.getItem("account_type") == "player"){
             
-        } else {
-            
+        } else if (localStorage.getItem("account_type") == "fan"){
+            window.location = "fan/index.html";
         }
     }
 }
 
 function loginManager(data){
     var information = JSON.parse(data);
+    
     if(information['error_email'] == "true"){
         alert("Please use a registered Email Address.");
     } else if(information['password_error'] == "true"){
         alert("Please make sure your password is correct.");
     } else {
-        localStorage.setItem("email_address", information['email_address']);
-        localStorage.setItem("password", information['password']);
-        localStorage.setItem("clubID", information['clubID']);
-        localStorage.setItem("account_type", "management");
+        var checked = $(".management-form #remember_me").prop('checked');
+        
+        if(checked == true){
+            localStorage.setItem("email_address", information['email_address']);
+            localStorage.setItem("password", information['password']);
+            localStorage.setItem("clubID", information['clubID']);
+            localStorage.setItem("account_type", "management");
+            localStorage.setItem("club_name", information['club_name']);
+            localStorage.setItem("managerID", information['managerID']);
+        } else {
+            localStorage.clear();
+            
+            localStorage.setItem("clubID", information['clubID']);
+            localStorage.setItem("account_type", "management");
+            localStorage.setItem("club_name", information['club_name']);
+            localStorage.setItem("managerID", information['managerID']);
+        }
         
         window.location = "management/index.html";
+    }
+}
+
+function loginFan(data){
+    var information = JSON.parse(data);
+    
+    if(information['error_email'] == "true"){
+        alert("Please use a registered Email Address.");
+    } else if(information['password_error'] == "true"){
+        alert("Please make sure your password is correct.");
+    } else {
+        var checked = $(".fan-form #remember_me").prop('checked');
+        
+        if(checked == true){
+            localStorage.setItem("email_address", information['email_address']);
+            localStorage.setItem("password", information['password']);
+            localStorage.setItem("clubID", information['clubID']);
+            localStorage.setItem("account_type", "fan");
+            localStorage.setItem("fan_name", information['fan_name']);
+            localStorage.setItem("fanID", information['fanID']);
+        } else {
+            localStorage.clear();
+            
+            localStorage.setItem("clubID", information['clubID']);
+            localStorage.setItem("account_type", "fan");
+            localStorage.setItem("fan_name", information['fan_name']);
+            localStorage.setItem("fanID", information['fanID']);
+        }
+        
+        window.location = "fan/index.html";
     }
 }
 
@@ -171,15 +256,52 @@ function signUpManager(data){
     var information = JSON.parse(data);
     if(information['error_email'] == "true"){
         alert("The Email Address provided is already in use.");
+    } else if(information['club_name_error'] == "true"){
+        alert("Team name is already in use.");
     } else {
         alert("Your account has new been created");
-        localStorage.setItem("email_address", information['email_address']);
-        localStorage.setItem("password", information['password']);
         localStorage.setItem("clubID", information['clubID']);
         localStorage.setItem("account_type", "management");
-        
+        localStorage.setItem("club_name", information['club_name']);
+        localStorage.setItem("managerID", information['managerID']);
         window.location = "management/index.html";
     }
+    
+}
+
+function signUpFan(data){
+    var information = JSON.parse(data);
+    if(information['error_email'] == "true"){
+        alert("The Email Address provided is already in use.");
+    } else {
+        alert("Your account has new been created");
+        localStorage.setItem("clubID", information['clubID']);
+        localStorage.setItem("account_type", "fan");
+        localStorage.setItem("fan_name", information['fan_name']);
+        localStorage.setItem("fanID", information['fanID']);
+        window.location = "fan/index.html";
+    }
+    
+}
+
+function retrieveClubs(){
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/retrieve-clubs.php",
+        type: "POST",
+        data: {from_app: "true"},
+        success:function(data){
+            found_clubs(data);
+        }
+    });
+}
+
+function found_clubs(data){
+    var info = JSON.parse(data);
+    var option = '';
+    for (i=0; i<info.length; i++){
+       option += '<option value="'+ info[i]['clubID'] + '">' + info[i]['club_name'] + '</option>';
+    }
+    $("#clubs").append(option); 
 }
 
 function emailChecker(email) {
