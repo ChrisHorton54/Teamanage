@@ -106,7 +106,12 @@ $(document).ready(function(){
                         type: "POST",
                         data: { email_address: email_address, password: password, team_name: team_name },
                         success:function(data){
-                            console.log(data);
+                            alert("Your account has been created");
+                            window.location = "management/index.html";
+                            localStorage.setItem("email_address", data['email_address']);
+                            localStorage.setItem("password", data['password']);
+                            localStorage.setItem("clubID", data['clubID']);
+                            localStorage.setItem("account_type", "management");
                         }
                     }); 
                 } else {
@@ -141,7 +146,6 @@ $(document).ready(function(){
 
 function startUpLogin(){
     if (localStorage.getItem("email_address") != null) {
-        console.log("test");
         if(localStorage.getItem("account_type") == "management"){
             window.location = "management/index.html";
         } else if(localStorage.getItem("account_type") == "player"){
@@ -154,7 +158,6 @@ function startUpLogin(){
 
 function loginManager(data){
     var information = JSON.parse(data);
-    console.log(information);
     if(information['error_email'] == "true"){
         alert("Please use a registered Email Address.");
     } else if(information['password_error'] == "true"){
