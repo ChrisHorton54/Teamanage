@@ -12,6 +12,8 @@
         
         // PhoneGap is ready
         function onDeviceReady() {
+            var pictureSource = navigator.camera.PictureSourceType;
+            var destinationType = navigator.camera.DestinationType;
         }
         
         window.onload = function(){
@@ -27,7 +29,6 @@
       <header>
         <img class="menu" src="../img/menu.png" alt="Menu" title="Menu" />
         <h2 id="club_name"></h2>
-          <a href=""><img class="add-player" src="../img/add.png" alt="New Player" title="New Player" /></a>
         <div id="popup-nav">
             <div id="popup-nav-content">
                 <img src="../img/arrow-head.png" class="arrow-head" title="Arrow Head" alt="Arrow Head" />
@@ -74,7 +75,7 @@
         <div class="section-body">
             <div class="section-content">
                 <div id="player-image">
-                    <img src="../img/gallery-nav.jpg" style="width:100px;"/>
+                    <img onclick="getPhoto(pictureSource.PHOTOLIBRARY);" src="../img/gallery-nav.jpg" style="width:100px;"/>
                 </div>
                 <div id="player-name-section">
                     <p>Player Name</p>

@@ -17,3 +17,15 @@ function playerAmount(){
 function returnPlayerAmount(data){
     $("#player_amount").html(data);
 }
+
+function getPhoto(source){
+    navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
+    destinationType: destinationType.FILE_URI,
+    sourceType: source });
+}
+
+function onPhotoURISuccess(imageURI) 
+{
+    console.log(imageURI);
+    $("#player-image img").attr("src",imageURI);
+}
