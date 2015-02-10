@@ -6,23 +6,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
-    <script type="text/javascript" charset="utf-8">
-        // Wait for PhoneGap to load     
-        document.addEventListener("deviceready", onDeviceReady, false);
-        
-        // PhoneGap is ready
-        function onDeviceReady() {
-            var pictureSource = navigator.camera.PictureSourceType;
-            var destinationType = navigator.camera.DestinationType;
-        }
-        
-        window.onload = function(){
-            $('#club_name').html(localStorage.getItem('club_name'));
-            $(".menu").click(function(){
-                $("#popup-nav").fadeToggle("slow");
-            });
-        }
-    </script>
+<script type="text/javascript" charset="utf-8">
+
+var pictureSource;   
+var destinationType; 
+
+document.addEventListener("deviceready",onDeviceReady,false);
+
+function onDeviceReady() 
+{
+    pictureSource=navigator.camera.PictureSourceType;
+    destinationType=navigator.camera.DestinationType;
+}
+
+
+function onPhotoURISuccess(imageURI) 
+{
+    console.log(imageURI);
+    var largeImage = document.getElementById('largeImage');
+    largeImage.style.display = 'block';
+    largeImage.src = imageURI;
+}
+
+function onPhotoDataSuccess(imageURI) 
+{ 
+    var imgProfile = document.getElementById('imgProfile');
+    imgProfile.src = imageURI;
+    if(sessionStorage.isprofileimage==1)
+    {
+        getLocation();
+    }
+    movePic(imageURI);
+}
+
+function onFail(message) 
+{
+    alert('Failed because: ' + message);
+}
+
+function movePic(file)
+{ 
+    window.resolveLocalFileSystemURI(file, resolveOnSuccess, resOnError); 
+} 
+
+function resolveOnSuccess(entry)
+{ 
+    var d = new Date();
+    var n = d.getTime();
+    var newFileName = n + ".jpg";
+    var myFolderApp = "MyAppFolder";
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) 
+    {      
+        fileSys.root.getDirectory( myFolderApp,
+                {create:true, exclusive: false},
+                function(directory) 
+                {
+                    entry.moveTo(directory, newFileName,  successMove, resOnError);
+                },
+        resOnError);
+    },
+    resOnError);
+}
+
+function successMove(entry) 
+{
+    sessionStorage.setItem('imagepath', entry.fullPath);
+}
+
+function resOnError(error) 
+{
+    alert(error.code);
+}
+
+function capturePhotoEdit() 
+{
+    navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true,
+    destinationType: destinationType.DATA_URL });
+}
+
+function getPhoto(source) 
+{
+    navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
+    destinationType: destinationType.FILE_URI,
+    sourceType: source });
+}
+
+function onFail(message) 
+{
+    alert('Failed because: ' + message);
+}
+
+</script>
   </head>
   <body>
       <img src="../img/background.jpg" id="background" alt="background">
@@ -75,7 +149,7 @@
         <div class="section-body">
             <div class="section-content">
                 <div id="player-image">
-                    <img onclick="getPhoto(pictureSource.PHOTOLIBRARY);" src="../img/gallery-nav.jpg" style="width:100px;"/>
+                    <img onclick="getPhoto(pictureSource.PHOTOLIBRARY);" src="../img/gallery-nav.jpg" style="width:100px;" id="largeImage"/>
                 </div>
                 <div id="player-name-section">
                     <p>Player Name</p>
@@ -105,8 +179,6 @@
             </div>
         </div>
       </div>
-      
-      <script type="text/javascript" src="../js/management/squad.js"></script>
       <script type="text/javascript" src="../js/teamanage.js"></script>
       <script type="text/javascript" src="phonegap.js"></script>
       <script type="text/javascript" src="cordova.js"></script>
