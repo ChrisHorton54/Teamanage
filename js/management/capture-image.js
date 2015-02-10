@@ -28,6 +28,7 @@ $(document).ready(function(){
         prev:   '#prev2' 
     });
 });
+
 function captureImage(){
     navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
         destinationType: Camera.DestinationType.DATA_URL
